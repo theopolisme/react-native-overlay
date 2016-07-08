@@ -5,13 +5,13 @@
 
 'use strict';
 
-var React = require('react-native');
+var React = require('react');
+var { PropTypes } = React;
 var {
   View,
-  PropTypes,
   StyleSheet,
   requireNativeComponent,
-} = React;
+} = require('react-native');
 
 type Props = {
   isVisible: boolean;
@@ -47,7 +47,7 @@ var Overlay = React.createClass({
     if (this.props.isVisible) {
       return (
         <RNOverlay isVisible={true} style={styles.container} pointerEvents="none" aboveStatusBar={this.props.aboveStatusBar}>
-          {React.Children.map(this.props.children, React.cloneElement)}
+          {React.Children.map(this.props.children, c => React.cloneElement(c))}
         </RNOverlay>
       );
     } else {
